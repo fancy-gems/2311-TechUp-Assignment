@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log a new case</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+    <h1>Log a new case</h1>
+
+    <!-- For outsiders -->
+    <form method="POST" id="reportForm"> 
+        <!-- need to check if the action and method are correct -->
+        <!-- URL of the website or content -->
+        <label for="url">Website or content URL:</label>
+        <input type="url" id="url" name="url" required>
+
+        <!-- When the post was made -->
+        <label for="postDate">Post date:</label>
+        <input type="date" id="postDate" name="postDate" required>
+
+        <!-- Brief description of the post -->
+        <label for="description">Brief description of post:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <!-- Question about the concern with the post -->
+        <label for="concern">What is your concern with the post?</label>
+        <textarea id="concern" name="concern" rows="4" required></textarea>
+
+        <!-- Flagger's email address -->
+        <label for="email">Your email address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- Submit button -->
+        <button type="button" onclick="submitReport()">Submit Report</button>
+    </form>
+    </div>
+
+    <!-- Decision for preliminary case diagnostics -->
+    <div id="decisionSection" style="display: none;">
+        <p>Your report has been logged. If you are an authorised officer, would you also like to proceed with diagnostics?</p>
+        <button onclick="proceedWithDiagnostics(true)">Yes</button>
+        <button onclick="proceedWithDiagnostics(false)">No</button>
+    </div>
+</div>
+
+<script>
+    function submitReport() {
+        // Perform the submission to the server or database here
+        // For now, let's just show the decision section
+        document.getElementById('decisionSection').style.display = 'block';
+       // You can add AJAX/fetch logic to send data to the server here
+       // Example: fetch('/submit', { method: 'POST', body: new FormData(document.getElementById('reportForm')) });
+    }
+
+    function proceedWithDiagnostics(isTrainedOfficer) {
+        if (isTrainedOfficer) {
+            // Redirect to the diagnostics form or perform further actions
+            window.location.href = 'diagnostics-form.html';
+        } else {
+            alert('Thank you for your report. You are not expected to proceed with the diagnostics.');
+            // You can add additional actions for non-trained officers
+        }
+    }
+</script>
+
+</body>
+</html>

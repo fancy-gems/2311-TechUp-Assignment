@@ -1,0 +1,74 @@
+<!-- diagnostics-form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostics Form</title>
+
+    <!-- Link to your common style sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Diagnostics Form</h1>
+
+        
+        <!-- Case Type Selection -->
+        <label for="caseType">Select Case Type:</label>
+        <select id="caseType" onchange="showHideFormFields()">
+            <option value="survey">Election Survey</option>
+            <option value="advertising">Election Advertising</option>
+        </select>
+
+        <!-- Survey Form Fields -->
+        <div id="surveyFields" style="display: none;">
+            <label for="surveyQuestion">Survey Question:</label>
+            <input type="text" id="surveyQuestion" name="surveyQuestion">
+            <!-- Add more survey-specific fields as needed -->
+        </div>
+
+        <!-- Advertising Form Fields -->
+        <div id="advertisingFields" style="display: none;">
+            <label for="adType">Advertisement Type:</label>
+            <input type="text" id="adType" name="adType">
+            <!-- Add more advertising-specific fields as needed -->
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit">Submit Diagnostics</button>
+
+        <!-- Cancel button to return to the homepage -->
+        <button onclick="cancelDiagnostics()">Cancel</button> 
+    </div>
+
+    <script>
+        function showHideFormFields() {
+        var selectedOptions = Array.from(document.getElementById('caseType').options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+
+         // Hide all form fields initially
+        document.getElementById('surveyFields').style.display = 'none';
+        document.getElementById('advertisingFields').style.display = 'none';
+
+    // Show form fields based on the selected case types
+         selectedOptions.forEach(caseType => {
+            if (caseType === 'survey') {
+             document.getElementById('surveyFields').style.display = 'block';
+         } else if (caseType === 'advertising') {
+             document.getElementById('advertisingFields').style.display = 'block';
+        }
+        // Add more conditions for additional case types if needed
+    });
+    }
+    
+    function cancelDiagnostics() {
+            // Redirect the user to the homepage
+            window.location.href = 'index.html';
+    }
+    </script>
+
+</body>
+</html>
