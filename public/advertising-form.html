@@ -1,0 +1,100 @@
+<!-- advertising-form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostics for Election Advertising Cases [Under Construction]</title>
+
+    <!-- Link to your common style sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Election Advertising Form</h1>
+
+        <!-- Advertising Form Fields -->
+        <form id="advertisingForm">
+            <label for="adQuestion1">Advertising Question 1 (Yes/No):</label>
+            <select id="adQuestion1" name="adQuestion1">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="adQuestion2">Advertising Question 2 (Text):</label>
+            <input type="text" id="adQuestion2" name="adQuestion2">
+
+            <!-- Additional advertising-specific fields can be added as needed -->
+
+            <!-- Submit button -->
+            <button type="button" onclick="submitAdvertisingForm()">Submit Advertising Form</button>
+        </form>
+    </div>
+
+    <!-- Modal for displaying messages -->
+    <div id="myModal" class="formmodal">
+        <p id="modalMessage"></p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- Overlay background for the modal -->
+    <div id="overlay" class="overlay"></div>
+
+    <script>
+        function submitAdvertisingForm() {
+            // Perform form submission logic here
+            // ...
+
+            // Set a local storage variable to indicate completion of the advertising form
+            localStorage.setItem('advertisingFormCompleted', 'true');
+
+            // alert('Advertising Form Submitted');
+
+            // Redirect to the next form or show thank you message
+            redirectToNextForm();
+        }
+
+        function redirectToNextForm() {
+            // Check if the survey form is also completed
+            const surveyFormCompleted = localStorage.getItem('surveyFormCompleted') === 'true';
+
+            // Check the selected case types
+            const selectedTypes = JSON.parse(localStorage.getItem('selectedTypes'));
+
+            if (surveyFormCompleted) {
+                // If both survey and advertising forms are completed, show a thank you message
+                showModal('Thank you for performing the diagnostics. The team will look into the matter.');
+            } else {
+                // If only advertising form is completed, redirect to the survey form if it was selected
+                if (selectedTypes && selectedTypes.includes('survey')) {
+                    // Use showModal instead of alert
+                    showModal('Election Advertising Form Submitted. Redirecting to the Election Survey form...');
+                    // Simulate redirection after a delay (you can replace this with actual redirection code)
+                    setTimeout(() => {
+                        window.location.href = 'survey-form.html';
+                    }, 2000);
+                } else {
+                    // Otherwise, show a message or take appropriate action
+                    showModal('Thank you for performing the diagnostics. The team will look into the matter.');
+                }
+            }
+        }
+
+        // Function to display the modal
+        function showModal(message) {
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+    </script>
+
+</body>
+</html>

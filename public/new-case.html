@@ -23,6 +23,10 @@
         <label for="postDate">Post date:</label>
         <input type="date" id="postDate" name="postDate" required>
 
+        <!-- Who communicated the post? -->
+        <label for="communicator">Who communicated the post?</label>
+        <input type="text" id="communicator" name="communicator" required>
+        
         <!-- Brief description of the post -->
         <label for="description">Brief description of post:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
@@ -41,31 +45,37 @@
     </div>
 
     <!-- Decision for preliminary case diagnostics -->
-    <div id="decisionSection" style="display: none;">
-        <p>Your report has been logged. If you are an authorised officer, would you also like to proceed with diagnostics?</p>
-        <button onclick="proceedWithDiagnostics(true)">Yes</button>
-        <button onclick="proceedWithDiagnostics(false)">No</button>
+    <div id="startDiagnosticsModal" class="modal">
+        <div class="modal-content">
+            <p>Your report has been logged. If you are an authorized officer, would you also like to proceed with diagnostics?</p>
+            <button onclick="proceedWithDiagnostics(true)">Yes</button>
+            <button onclick="proceedWithDiagnostics(false)">No</button>
     </div>
 </div>
 
 <script>
+    // Clear session storage on page load
+    sessionStorage.clear();
+    
     function submitReport() {
-        // Perform the submission to the server or database here
-        // For now, let's just show the decision section
-        document.getElementById('decisionSection').style.display = 'block';
-       // You can add AJAX/fetch logic to send data to the server here
-       // Example: fetch('/submit', { method: 'POST', body: new FormData(document.getElementById('reportForm')) });
-    }
+    // Perform the submission to the server or database here
+    // For now, let's just show the decision modal
+    document.getElementById('startDiagnosticsModal').style.display = 'flex';
+}
 
-    function proceedWithDiagnostics(isTrainedOfficer) {
-        if (isTrainedOfficer) {
-            // Redirect to the diagnostics form or perform further actions
-            window.location.href = 'diagnostics-form.html';
-        } else {
-            alert('Thank you for your report. You are not expected to proceed with the diagnostics.');
-            // You can add additional actions for non-trained officers
-        }
+function proceedWithDiagnostics(isTrainedOfficer) {
+    // Hide the modal
+    document.getElementById('startDiagnosticsModal').style.display = 'none';
+
+    if (isTrainedOfficer) {
+        // Redirect to the diagnostics form or perform further actions
+        window.location.href = 'diagnostics-form.html';
+    } else {
+        alert('Thank you for your report. You are not expected to proceed with the diagnostics.');
+        // You can add additional actions for non-trained officers
     }
+}
+
 </script>
 
 </body>

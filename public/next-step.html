@@ -1,0 +1,50 @@
+<!-- next-step.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Step</title>
+
+    <!-- Link to your common style sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Next Step</h1>
+
+        <!-- Placeholder content for the selected case types -->
+        <p>Selected Case Types: <span id="selectedCaseTypes"></span></p>
+
+        <!-- Back button -->
+        <button onclick="goBack()">Back</button>
+
+        <!-- Submit button -->
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <script>
+        // Parse selected case types from the URL
+        var selectedCaseTypes = decodeURIComponent(window.location.search.replace('?caseTypes=', '')).split(',');
+
+        // Display selected case types
+        document.getElementById('selectedCaseTypes').textContent = selectedCaseTypes.join(', ');
+
+        function goBack() {
+            // Redirect the user to the previous step
+            window.history.back();
+        }
+
+        function submitForm() {
+            // Redirect to the first form page
+            if (selectedCaseTypes.length > 0) {
+                window.location.href = selectedCaseTypes[0] + '-form.html';
+            } else {
+                alert('No case types selected.');
+            }
+        }
+    </script>
+
+</body>
+</html>

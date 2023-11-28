@@ -4,8 +4,6 @@ body, h1, h2, p, label, input, textarea, button {
     padding: 0;
 }
 
-
-
 /* Apply a background color and text color to the body */
 body {
     background-color: #f0e0e0;
@@ -16,9 +14,11 @@ body {
 
 /* Center the content on the page */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 65%; /* Adjust the width as needed */
+    margin: 20px auto 0; /* 20px top margin, centered horizontally */    background-color: #fff;
     padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -53,132 +53,154 @@ h1 {
         background-color: #45a049; /* Darker green on hover */
     }
 
-/* Style the form */
-form {
+/* Styles for new-case.html */
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style form labels */
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    /* Style form inputs and textarea */
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Style the submit button */
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Style the submit button on hover */
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: #fff; /* White background */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .modal button {
+        background-color: #4caf50; /* Green background color */
+        color: #fff; /* White text color */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 10px;
+        font-size: 1em;
+    }
+
+    .modal button:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+
+/* Common modal for advertising-form, and survey-form */
+
+
+/* Styles for diagnostics-form.html */
+/* Styles for diagnostics-form.html */
+
+.diagnostics-container {
+    max-width: 400px;
+    margin: 50px auto;
     background-color: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Style form labels */
-label {
-    display: block;
-    margin-bottom: 8px;
+/* Style the checkboxes and labels */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
-/* Style form inputs and textarea */
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.custom-checkbox input[type="checkbox"] {
+    margin-right: 30px;
 }
 
-/* Style the submit button */
-button {
+.custom-checkbox span {
+    margin-right: 300px; /* Adjust the left margin for the text */
+}
+/* Style the Submit button */
+.diagnostics-container button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 1.2em;
 }
 
-/* Style the submit button on hover */
-button:hover {
+/* Style the Submit button on hover */
+.diagnostics-container button:hover {
     background-color: #45a049;
 }
 
-/* Styles for diagnostics-form */
 
-/* Styling for the case type selection section */
-#caseType {
-    margin-bottom: 20px;
-}
 
-/* Styling for the form fields in diagnostics-form.html */
-#surveyFields,
-#advertisingFields {
-    display: none; /* Initially hide the form fields */
-}
+/* Styles for advertising-form and survey-form */
 
-#surveyFields label,
-#advertisingFields label {
-    margin-top: 20px; /* Add margin to labels for better spacing */
-}
+    /* Styles for the modal */
+    .formmodal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        z-index: 1000;
+    }
 
-#surveyFields textarea,
-#advertisingFields input[type="text"] {
-    /* Add specific styles for survey and advertising fields if needed */
-    /* Styling for the survey fields */
-    #surveyFields textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical; /* Allow vertical resizing of the textarea */
-}
+    /* Styles for the overlay background */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 900;
+    }
 
-    /* Styling for the advertising fields */
-    #advertisingFields input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+    
 
-}
-/* Styling for the submit button in diagnostics-form.html */
-button[type="submit"] {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-/* Styling for the cancel button in diagnostics-form.html */
-button[type="button"] {
-    background-color: #d9534f;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button[type="button"]:hover {
-    background-color: #c9302c;
-}
-
-/* Styling for the decision section in diagnostics-form.html */
-#decisionSection {
-    margin-top: 20px;
-}
-
-/* Styling for the yes/no buttons in diagnostics-form.html */
-#decisionSection button {
-    margin-right: 10px;
-    background-color: #5bc0de;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#decisionSection button:hover {
-    background-color: #46b8da;
-}

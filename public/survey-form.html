@@ -1,0 +1,134 @@
+<!-- survey-form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostics for Election Survey Cases</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Election Survey Form</h1>
+
+        <!-- Survey Form Fields -->
+        <form id="surveyForm">
+            <!-- Survey Question 1 -->
+            <label for="surveyQuestion1">Is the survey ongoing?</label>
+            <select id="surveyQuestion1" name="surveyQuestion1">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="unsure">Unsure</option>
+            </select>
+    
+            <!-- Survey Question 2 -->
+            <label for="surveyQuestion2">Are the results of the survey (whether final or interim results) visible now?</label>
+            <select id="surveyQuestion2" name="surveyQuestion2">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="unsure">Unsure</option>
+            </select>
+    
+            <!-- Survey Question 3 -->
+            <label for="surveyQuestion3">Were either the survey or the results published between [relevant date range]?</label>
+            <select id="surveyQuestion3" name="surveyQuestion3">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="unsure">Unsure</option>
+            </select>
+
+            <hr>
+
+            <!-- Question 4 -->
+            <label for="surveyQuestion4">Do the survey results purport to show the opinion of how voters will vote, or of voter preferences respecting any candidate?</label>
+            <select id="surveyQuestion4" name="surveyQuestion4">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            </select>
+
+            <!-- Question 5 -->
+            <label for="surveyQuestion5">Is it clear which candidates are being referred to in the survey?</label>
+            <select id="surveyQuestion5" name="surveyQuestion5">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            </select>
+            <br>
+            <br>
+
+            <!-- Additional survey-specific fields can be added as needed -->
+
+            <!-- Submit button -->
+            <button type="button" onclick="submitSurveyForm()">Submit Survey Form</button>
+        </form>
+    </div>
+
+
+     <!-- Modal for displaying messages -->
+     <div id="myModal" class="formmodal">
+        <p id="modalMessage"></p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- Overlay background for the modal -->
+    <div id="overlay" class="overlay"></div>
+
+
+
+    <script>
+       function submitSurveyForm() {
+            // Perform form submission logic here
+            // ...
+
+            // Set a local storage variable to indicate completion of the survey form
+            localStorage.setItem('surveyFormCompleted', 'true');
+
+            // alert('Survey Form Submitted');
+
+            // Redirect to the next form or show thank you message
+            redirectToNextForm();
+        }
+
+        function redirectToNextForm() {
+            // Check if the advertising form is also selected
+            const advertisingFormCompleted = localStorage.getItem('advertisingFormCompleted') === 'true';
+
+            // Check the selected case types
+            const selectedTypes = JSON.parse(localStorage.getItem('selectedTypes'));
+
+            if (advertisingFormCompleted) {
+                // If both survey and advertising forms are completed, show a thank you message
+                showModal('Thank you for performing the diagnostics. The team will look into the matter.');
+            } else {
+                // If only survey form is completed, redirect to the advertising form if it was selected
+                if (selectedTypes && selectedTypes.includes('advertising')) {
+                    // Use showModal instead of alert
+                    showModal('Election Survey Form Submitted. Redirecting to the Election Advertising form...');
+                    // Simulate redirection after a delay (you can replace this with actual redirection code)
+                    setTimeout(() => {
+                        window.location.href = 'advertising-form.html';
+                    }, 2000);
+                    
+                } else {
+                    // Otherwise, show a message or take appropriate action
+                    showModal('Thank you for performing the diagnostics. The team will look into the matter.');
+                }
+            }
+        }
+
+        // Function to display the modal
+        function showModal(message) {
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('myModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
